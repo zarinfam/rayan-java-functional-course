@@ -21,7 +21,20 @@ public class MainApple {
     public static void main(String[] args) {
 
         ArrayList<Apple> inventory = new ArrayList<>(Arrays.asList(
-                new Apple(GREEN), new Apple(YELLOW), new Apple(RED), new Apple(GREEN)));
+                new Apple(GREEN, 160), new Apple(YELLOW, 130), new Apple(RED, 200)
+                , new Apple(GREEN, 100)));
+
+
+        filterApples(inventory, apple -> apple.getWeight() > 15 );
+
+
+        filterApples(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return (apple.getColor().equals(MainApple.GREEN)
+                        && apple.getWeight() > 150);
+            }
+        });
 
 
         inventory.sort(
@@ -49,7 +62,9 @@ public class MainApple {
         return result;
     }
 
-    public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate predicate) {
+    public static List<Apple> filterApples(List<Apple> inventory
+            , ApplePredicate predicate) {
+
         List<Apple> result = new ArrayList<>();
 
         for (Apple apple : inventory) {
