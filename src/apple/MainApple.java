@@ -1,11 +1,13 @@
 package apple;
 
+import com.sun.scenario.effect.InvertMask;
 import functional.Transaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
@@ -25,7 +27,7 @@ public class MainApple {
                 , new Apple(GREEN, 100)));
 
 
-        filterApples(inventory, apple -> apple.getWeight() > 15 );
+        filterApples(inventory, apple -> apple.getWeight() > 15);
 
 
         filterApples(inventory, new ApplePredicate() {
@@ -42,12 +44,11 @@ public class MainApple {
 
         inventory.sort(comparing((a) -> a.getWeight()));
 
-        inventory.sort(comparing(Apple::getWeight));
-
-
         Predicate<Apple> redApple = (a -> a.getColor().equals(RED));
 
         Predicate<Apple> redAndGreenApple = redApple.or(a -> a.getColor().equals(GREEN));
+
+        inventory.sort(comparing(Apple::getWeight));
     }
 
     public static List<Apple> filterApplesByColor(List<Apple> inventory, String color) {
