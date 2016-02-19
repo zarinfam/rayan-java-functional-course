@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -9,17 +11,12 @@ import static java.util.stream.Collectors.toList;
  */
 public class MainApp {
 
+    static int b = 0;
 
     public static void main(String[] args) {
-        ArrayList<String> words = new ArrayList<>();
-        words.add("hello");
-        words.add("world");
 
-        words.stream()
-                .map(word -> word.split(""))
-                .flatMap(Arrays::stream)
-                .distinct()
-                .collect(toList()).forEach(s -> System.out.println(s));
+        IntStream.rangeClosed(1,5);
+
 
     }
 }

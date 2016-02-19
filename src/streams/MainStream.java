@@ -28,23 +28,26 @@ public class MainStream {
 
     public static void main(String[] args) {
 
-        Map<Dish.Type, List<Dish>> dishesByType =
-                menu.stream().collect(groupingBy(Dish::getType));
+        System.out.println(menu.stream().filter(d -> d.isVegetarian())
+                .mapToInt(d -> d.getCalories()).sum());
 
-        dishesByType.forEach((key , value) -> {
-            System.out.println(key);
-            System.out.println("-------");
-            value.forEach(System.out::println);
-        });
 
-        List<String> lowCaloricDishesName =
-                menu.parallelStream()
-                        .filter(d -> d.getCalories() < 400)
-                .sorted(comparing(Dish::getCalories))
-                .map(Dish::getName)
-                .collect(toList());
+//        Map<Dish.Type, List<Dish>> dishesByType =
+//                menu.stream().collect(groupingBy(Dish::getType));
+//
+//        dishesByType.forEach((key , value) -> {
+//            System.out.println(key);
+//            System.out.println("-------");
+//            value.forEach(System.out::println);
+//        });
 
-        lowCaloricDishesName.forEach(System.out::println);
+//        List<String> lowCaloricDishesName =
+//                menu.stream().filter(d -> d.getCalories() < 400)
+//                .sorted(comparing(Dish::getCalories))
+//                .map(Dish::getName)
+//                .forEach(System.out::println);
+
+//        lowCaloricDishesName.;
 
     }
 }
